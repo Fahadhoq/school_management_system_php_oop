@@ -5,9 +5,9 @@
  */
 class Model extends Database
 {
-	protected $table = "users";
+	public $errors = array();
 
-	function __construct()
+	public function __construct()
 	{
 		
 		if (!property_exists($this,'table')) {
@@ -35,18 +35,36 @@ class Model extends Database
 
 	public function insert($data)
 	{
-		// Extract keys and construct column names
+
+		//remove unwanted columns
+		if(property_exists($this, 'allowedColumns'))
+		{
+			foreach($data as $key => $column)
+			{
+				if(!in_array($key, $this->allowedColumns))
+				{
+					unset($data[$key]);
+				}
+			}
+
+		}
+
+		//run functions before insert
+		if(property_exists($this, 'beforeInsert'))
+		{
+			foreach($this->beforeInsert as $func)
+			{
+				$data = $this->$func($data);
+			}
+		}
+
 		$keys = array_keys($data);
 		$columns = implode(',', $keys);
-		
-		// Construct placeholders for the values
-		$placeholders = implode(',', array_map(fn($key) => ":$key", $keys));
+		$values = implode(',:', $keys);
 
-		// Build the query
-		$query = "INSERT INTO $this->table ($columns) VALUES ($placeholders)";
+		$query = "insert into $this->table ($columns) values (:$values)";
 
-		// Execute the query with the provided data
-		return $this->query($query, $data);
+		return $this->query($query,$data);
 	}
 
 	public function update($id,$data)

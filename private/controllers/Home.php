@@ -32,7 +32,7 @@ class Home extends Controller
 		// $user->update(3,$arr);
 
 		//delete
-		$user->delete(3);
+		// $user->delete(3);
 
 		$data = $user->findAll();
 		$this->view('home',['rows'=>$data]);

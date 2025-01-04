@@ -13,8 +13,10 @@ class App
 	{
 		// code...
 		$URL = $this->getURL();
+
+
 		if(file_exists("../private/controllers/".$URL[0].".php"))
-		{
+		{  
 			$this->controller = ucfirst($URL[0]);
 			unset($URL[0]);
 		}
@@ -39,7 +41,7 @@ class App
 	}
 
 	private function getURL()
-	{
+	{ 
 		$url = isset($_GET['url']) ? $_GET['url'] : "home";
 		return explode("/", filter_var(trim($url,"/")),FILTER_SANITIZE_URL);
 	}
