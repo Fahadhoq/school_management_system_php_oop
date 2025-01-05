@@ -13,7 +13,7 @@
 		      <input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="basic-addon1">
 		    </div>
 		  </form>
- 			<a href="<?=ROOT?>/signup">
+ 			<a href="<?=ROOT?>/signup?mode=students">
 				<button class="btn btn-sm btn-primary"><i class="fa fa-plus"></i>Add New</button>
 			</a>
  		</nav>
@@ -37,7 +37,7 @@
 
 	 			<?php endforeach;?>
  			<?php else:?>
- 				<h4>No staff members were found at this time</h4>
+ 				<h4>No students were found at this time</h4>
  			<?php endif;?>
 		</div>
 

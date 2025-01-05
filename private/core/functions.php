@@ -56,3 +56,15 @@ function show($data)
 	print_r($data);
 	echo "</pre>";
 }
+
+function get_image($image,$gender = 'male')
+{
+	if(!file_exists($image)){
+ 		$image = ASSETS.'/user_female.jpg';
+ 		if($gender == 'male'){
+ 			$image = ASSETS.'/user_male.jpg';
+ 		}
+ 	}
+
+ 	return $image;
+}

@@ -9,6 +9,7 @@ class Signup extends Controller
 	function index()
 	{
 		// code...
+ 		$mode = isset($_GET['mode']) ? $_GET['mode'] : '';
 		$errors = array();
  		if(count($_POST) > 0)
  		{
@@ -21,7 +22,8 @@ class Signup extends Controller
  				$_POST['date'] = date("Y-m-d H:i:s");
 
  				$user->insert($_POST);
- 				$this->redirect('users');
+ 				$redirect = $mode == 'students' ? 'students':'users';
+ 				$this->redirect($redirect);
  			}else
  			{
  				//errors
@@ -31,6 +33,7 @@ class Signup extends Controller
 
 		$this->view('signup',[
 			'errors'=>$errors,
+			'mode'=>$mode,
 		]);
 	}
 }
