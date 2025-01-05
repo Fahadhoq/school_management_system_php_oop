@@ -1,25 +1,32 @@
-<?php
+<?php 
 
-function get_var($key){
-    if(isset($_POST[$key])){
-        return $_POST[$key];
-    }
+function get_var($key,$default = "")
+{
 
-    return "";
+	if(isset($_POST[$key]))
+	{
+		return $_POST[$key];
+	}
+
+	return $default;
 }
 
-function get_select($key,$value){
-    if(isset($_POST[$key])){
-       if($_POST[$key] == $value) {
-         return 'selected';
-       }   
-    }
+function get_select($key,$value)
+{
+	if(isset($_POST[$key]))
+	{
+		if($_POST[$key] == $value)
+		{
+			return "selected";
+		}
+	}
 
-    return "";
+	return "";
 }
 
-function esc($var){
-    return htmlspecialchars($var);
+function esc($var)
+{
+	return htmlspecialchars($var);
 }
 
 function random_string($length)
@@ -35,4 +42,17 @@ function random_string($length)
     }
 
     return $text;
+}
+
+function get_date($date)
+{
+
+	return date("jS M, Y",strtotime($date));
+}
+
+function show($data)
+{
+	echo "<pre>";
+	print_r($data);
+	echo "</pre>";
 }

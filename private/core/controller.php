@@ -31,7 +31,9 @@ class Controller
 		return false;
 	}
 
-	public function redirect($link){
+	public function redirect($link)
+	{
+
 		header("Location: ". ROOT . "/".trim($link,"/"));
 		die;
 	}

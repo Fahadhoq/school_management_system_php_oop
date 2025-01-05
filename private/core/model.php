@@ -9,9 +9,10 @@ class Model extends Database
 
 	public function __construct()
 	{
-		
-		if (!property_exists($this,'table')) {
-			$this->table = strtolower($this::class)."s";
+		// code...
+		if(!property_exists($this, 'table'))
+		{
+			$this->table = strtolower($this::class) . "s";
 		}
 	}
 
@@ -21,16 +22,43 @@ class Model extends Database
 
 		$column = addslashes($column);
 		$query = "select * from $this->table where $column = :value";
-		return $this->query($query,[
+		$data = $this->query($query,[
 			'value'=>$value
 		]);
+
+		//run functions after select
+		if(is_array($data)){
+			if(property_exists($this, 'afterSelect'))
+			{
+				foreach($this->afterSelect as $func)
+				{
+					$data = $this->$func($data);
+				}
+			}
+		}
+
+		return $data;
 	}
 
 	public function findAll()
 	{
 
 		$query = "select * from $this->table ";
-		return $this->query($query);
+		$data = $this->query($query);
+
+		//run functions after select
+		if(is_array($data)){
+			if(property_exists($this, 'afterSelect'))
+			{
+				foreach($this->afterSelect as $func)
+				{
+					$data = $this->$func($data);
+				}
+			}
+		}
+
+		return $data;
+
 	}
 
 	public function insert($data)
@@ -69,29 +97,28 @@ class Model extends Database
 
 	public function update($id,$data)
 	{
-		$data['id'] = $id;
+
 		$str = "";
 		foreach ($data as $key => $value) {
+			// code...
 			$str .= $key. "=:". $key.",";
 		}
 
 		$str = trim($str,",");
+ 
+		$data['id'] = $id;
+		$query = "update $this->table set $str where id = :id";
 
-		// Build the query
-		$query = "UPDATE $this->table SET $str WHERE id= :id";
-
-		// Execute the query with the provided data
-		return $this->query($query, $data);
+		return $this->query($query,$data);
 	}
 
 	public function delete($id)
 	{
-		$query = "DELETE from $this->table WHERE id= :id";
-        $data['id'] = $id;
-		// Execute the query with the provided data
-		return $this->query($query, $data);
-	}
 
+		$query = "delete from $this->table where id = :id";
+		$data['id'] = $id;
+		return $this->query($query,$data);
+	}
 	
 }
 
