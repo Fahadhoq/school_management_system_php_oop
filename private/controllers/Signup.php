@@ -6,6 +6,7 @@
 class Signup extends Controller
 {
 	
+	
 	function index()
 	{
 		// code...
