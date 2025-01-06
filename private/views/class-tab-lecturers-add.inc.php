@@ -22,8 +22,9 @@
 	<div class="clearfix"></div>
 </form>
 <br>
-<div class="card-group justify-content-center">
-	 <form method="post">
+
+<form method="post">
+	<div class="card-group justify-content-center">
 
 		<?php if(isset($results) && $results):?>
 			 
@@ -38,5 +39,5 @@
 	 		<?php endif;?>
 	 	<?php endif;?>
 
-	</form>
-</div>
+	</div>
+</form>

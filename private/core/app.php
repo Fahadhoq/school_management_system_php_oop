@@ -17,6 +17,10 @@ class App
 		{
 			$this->controller = ucfirst($URL[0]);
 			unset($URL[0]);
+		}else
+		{
+			echo "<center><h1>controller not found</h1></center>";
+			die;
 		}
 
 		require "../private/controllers/".$this->controller.".php";

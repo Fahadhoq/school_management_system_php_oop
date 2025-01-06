@@ -12,7 +12,7 @@
   
 </style>
 <nav class="navbar navbar-expand-lg navbar-light bg-light p-2">
-  	<a class="navbar-brand" href="#">
+  	<a class="navbar-brand" href="<?=ROOT?>">
   		<img src="<?=ROOT?>/assets/logo.png" class="" style="width:50px;">
   		 <?=Auth::getSchool_name()?>
 	</a>
