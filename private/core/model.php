@@ -17,11 +17,11 @@ class Model extends Database
 	}
 
 
-	public function where($column,$value)
+	public function where($column,$value,$orderby = 'desc')
 	{
 
 		$column = addslashes($column);
-		$query = "select * from $this->table where $column = :value";
+		$query = "select * from $this->table where $column = :value order by id $orderby";
 		$data = $this->query($query,[
 			'value'=>$value
 		]);
@@ -40,11 +40,11 @@ class Model extends Database
 		return $data;
 	}
 
-	public function first($column,$value)
+	public function first($column,$value,$orderby = 'desc')
 	{
 
 		$column = addslashes($column);
-		$query = "select * from $this->table where $column = :value";
+		$query = "select * from $this->table where $column = :value order by id $orderby";
 		$data = $this->query($query,[
 			'value'=>$value
 		]);
@@ -66,10 +66,10 @@ class Model extends Database
 		return $data;
 	}
 
-	public function findAll()
+	public function findAll($orderby = 'desc')
 	{
 
-		$query = "select * from $this->table ";
+		$query = "select * from $this->table order by id $orderby";
 		$data = $this->query($query);
 
 		//run functions after select
