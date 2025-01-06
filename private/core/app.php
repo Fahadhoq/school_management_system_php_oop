@@ -13,6 +13,7 @@ class App
 	{
 		// code...
 		$URL = $this->getURL();
+		 
 		if(file_exists("../private/controllers/".$URL[0].".php"))
 		{
 			$this->controller = ucfirst($URL[0]);
