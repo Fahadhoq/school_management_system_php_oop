@@ -64,6 +64,9 @@ function get_image($image,$gender = 'male')
  		if($gender == 'male'){
  			$image = ASSETS.'/user_male.jpg';
  		}
+ 	}else
+ 	{
+ 		$image = ROOT . "/" . $image;
  	}
 
  	return $image;

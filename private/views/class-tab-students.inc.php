@@ -30,7 +30,11 @@
 
 			?>
 		<?php endforeach;?>
+
 	<?php else:?>
 		<center><h4>No students were found in this class</h4></center>
 	<?php endif;?>
+
  </div>
+
+<?php $pager->display()?>

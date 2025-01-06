@@ -34,3 +34,4 @@
 		<center><h4>No lecturers were found in this class</h4></center>
 	<?php endif;?>
  </div>
+ <?php $pager->display()?>
