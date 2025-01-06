@@ -33,13 +33,15 @@
 			  <li class="nav-item">
 			    <a class="nav-link <?=$page_tab=='info' ? 'active':'';?>" href="<?=ROOT?>/profile/<?=$row->user_id?>">Basic Info</a>
 			  </li>
-			  <li class="nav-item">
-			    <a class="nav-link <?=$page_tab=='classes' ? 'active':'';?>" href="<?=ROOT?>/profile/<?=$row->user_id?>?tab=classes">Classes</a>
-			  </li>
-			  <li class="nav-item">
-			    <a class="nav-link <?=$page_tab=='tests' ? 'active':'';?>" href="<?=ROOT?>/profile/<?=$row->user_id?>?tab=tests">Tests</a>
-			  </li>
-		 
+			  <?php if(Auth::access('lecturer') || Auth::i_own_content($row)):?>
+				  <li class="nav-item">
+				    <a class="nav-link <?=$page_tab=='classes' ? 'active':'';?>" href="<?=ROOT?>/profile/<?=$row->user_id?>?tab=classes">My Classes</a>
+				  </li>
+
+				  <li class="nav-item">
+				    <a class="nav-link <?=$page_tab=='tests' ? 'active':'';?>" href="<?=ROOT?>/profile/<?=$row->user_id?>?tab=tests">Tests</a>
+				  </li>
+		 	<?php endif;?>
 			</ul>
 
 			<?php
@@ -53,7 +55,11 @@
 					
 					case 'classes':
 						// code...
-						include(views_path('profile-tab-classes'));
+						if(Auth::access('lecturer') || Auth::i_own_content($row)){
+							include(views_path('profile-tab-classes'));
+						}else{
+							include(views_path('access-denied'));
+						}
 						break;
 					
 					case 'tests':

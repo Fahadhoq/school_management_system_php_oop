@@ -1,4 +1,4 @@
-<center><h4>My Classes</h4></center>
+<h3>Tests</h3>
 <nav class="navbar navbar-light bg-light">
   <form class="form-inline">
     <div class="input-group">
@@ -9,8 +9,3 @@
     </div>
   </form>
 </nav>
- 
-<hr>
-<?php $rows = $student_classes;?>
-<?php include(views_path('classes'))?>
-

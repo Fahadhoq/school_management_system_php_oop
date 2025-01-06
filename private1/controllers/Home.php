@@ -14,10 +14,7 @@ class Home extends Controller
 			$this->redirect('login');
 		}
 
-		$user = new User();
- 
-		$data = $user->findAll();
-
-		$this->view('home',['rows'=>$data]);
+		
+		$this->view('home');
 	}
 }

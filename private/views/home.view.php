@@ -23,6 +23,7 @@
 	 
 	 	<div class="row justify-content-center ">
 
+	 		<?php if(Auth::access('super_admin')):?>
 		 		<div class="card col-3 shadow rounded m-4 p-0 border">
 	 				<a href="<?=ROOT?>/schools">
 		 			<div class="card-header">SCHOOLS</div>
@@ -32,7 +33,9 @@
 		 			<div class="card-footer">View all schools</div>
 	 				</a>
 		 		</div>
+		 	<?php endif;?>
 
+		 	<?php if(Auth::access('admin')):?>
 		 		<div class="card col-3 shadow rounded m-4 p-0 border">
 	 				<a href="<?=ROOT?>/users">
 		 			<div class="card-header">STAFF</div>
@@ -42,7 +45,9 @@
 		 			<div class="card-footer">View all staff members</div>
 		 			</a>
 		 		</div>
+		 	<?php endif;?>
 
+		 	<?php if(Auth::access('reception')):?>
 		 		<div class="card col-3 shadow rounded m-4 p-0 border">
 	 				<a href="<?=ROOT?>/students">
 		 			<div class="card-header">STUDENTS</div>
@@ -52,6 +57,7 @@
 		 			<div class="card-footer">View all students</div>
 		 			</a>
 		 		</div>
+		 	<?php endif;?>
 
 		 		<div class="card col-3 shadow rounded m-4 p-0 border">
 	 				<a href="<?=ROOT?>/classes">
@@ -73,6 +79,7 @@
 		 			</a>
 		 		</div>
 
+		 		<?php if(Auth::access('admin')):?>
 		 		<div class="card col-3 shadow rounded m-4 p-0 border">
 	 				<a href="<?=ROOT?>/statistics">
 		 			<div class="card-header">STATISTICS</div>
@@ -92,6 +99,7 @@
 		 			<div class="card-footer">View app settings</div>
 		 			</a>
 		 		</div>
+		 		<?php endif;?>
 
 		 		<div class="card col-3 shadow rounded m-4 p-0 border">
 	 				<a href="<?=ROOT?>/profile">
